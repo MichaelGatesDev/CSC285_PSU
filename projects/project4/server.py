@@ -15,6 +15,12 @@ class DBHelper:
     def __init__(self, dbFile):
         self.db_file = dbFile
 
+    """
+    Creates the primary database for the program with structure:
+    ----------------------------------
+    | TEXT name  | TEXT abbreviation |
+    ----------------------------------
+    """
     def create_db(self):
         print("Creating database: " + self.db_file)
         con = sqlite3.connect(self.db_file)
@@ -98,6 +104,7 @@ class WebHandler(BaseHTTPRequestHandler):
             self.write_page('stock_not_found.html', {'{stock}': stock})
             return
 
+        value = 0
         try:
             value = sf.get_stock_value(stock)
         except Exception as e:

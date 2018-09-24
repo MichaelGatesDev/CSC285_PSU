@@ -14,11 +14,15 @@ class StockFetcher:
         page = urllib.request.urlopen(self.url + stock).read()
         soup = BeautifulSoup(page, 'html.parser')
         h3 = soup.find("h3", class_="intraday__price")
-        if h3:
-            bq = h3.find('bg-quote', class_='value')
-            if(bq != None and bq.contents != None and len(bq.contents) >= 1):
-                return bq.contents[0]
-        return -1
+        if not h3:
+            return -1
+        bq = h3.find('bg-quote', class_='value')
+        if(bq != None and bq.contents != None and len(bq.contents) >= 1):
+            return bq.contents[0]
+        else:
+            sp = soup.find('span', class_='value')
+            if(sp != None and sp.contents != None and len(sp.contents) >= 1):
+                return sp.contents[0]
 
 
     def get_company_name(self, stock):
