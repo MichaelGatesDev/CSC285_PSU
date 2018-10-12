@@ -62,17 +62,18 @@ class Program:
 
     def showPlot(self, data):
         t1 = list(np.arange(2010, 2018)) # 2010-2017
-        cities = ""
+        cities = []
         for d in data:
             if(len(d) < 2):
                 continue
             city = d[0]
             dl = d[1]
-            cities += city + " "
+            cities.append(city)
             p = plt.plot(t1, np.array(dl), marker=randomShape())
         plt.xlabel("Years")
         plt.ylabel("Population")
-        plt.title(f"Population of {cities}")
+        plt.title(f"Populations within {self.state}")
+        plt.legend(cities)
         plt.show()
 
     """
@@ -85,9 +86,17 @@ class Program:
 
         # Load the data for the state
         data = popdata.loadPopDataFromCSV(os.path.join("downloads", self.stateFileName))
+        self.state = data.name
 
         # Ask the user for the cities
-        cities = self.askCities(2, data)
+        num = None
+        while not num:
+            try:
+                num = int(input("How many cities would you like to view? "))
+            except ValueError:
+                print("Invalid number of cities.")
+
+        cities = self.askCities(num, data)
         cd = []
         for c in cities:
             dataList = data.cityDataAsList(c)
