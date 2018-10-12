@@ -11,6 +11,7 @@ import os
 import matplotlib.pyplot as plt
 import numpy as np
 import random
+import math
 
 import cencusweb
 import popdata
@@ -63,6 +64,8 @@ class Program:
     def showPlot(self, data):
         t1 = list(np.arange(2010, 2018)) # 2010-2017
         cities = []
+        minY = 0
+        maxY = 1
         for d in data:
             if(len(d) < 2):
                 continue
@@ -70,6 +73,28 @@ class Program:
             dl = d[1]
             cities.append(city)
             p = plt.plot(t1, np.array(dl), marker=randomShape())
+            if(min(dl) < minY):
+                minY = min(dl)
+            if(max(dl) > maxY):
+                maxY = max(dl)
+        stepRate = (maxY - minY) / len(data)
+        if(stepRate < 100):
+            # stepRate = int(round(stepRate/10.0) * 10.0)
+            stepRate = 10
+        elif(stepRate < 1000):
+            # stepRate = int(round(stepRate/100.0) * 100.0)
+            stepRate = 100
+        elif(stepRate < 10000):
+            # stepRate = int(round(stepRate/100.0) * 100.0)
+            stepRate = 1000
+        elif(stepRate < 100000):
+            # stepRate = int(round(stepRate/1000.0) * 1000.0)
+            stepRate = 10000
+        elif(stepRate < 1000000):
+            # stepRate = int(round(stepRate/10000.0) * 10000.0)
+            stepRate = 100000
+        print(f"Step rate: {stepRate}")
+        plt.yticks(np.arange(minY, maxY, step=5000))
         plt.xlabel("Years")
         plt.ylabel("Population")
         plt.title(f"Populations within {self.state}")
