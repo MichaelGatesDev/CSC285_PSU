@@ -111,8 +111,8 @@ class Program:
         if(run_as_project):
             ## ------------------------------------- ##
             ## HARDCODED AS PER PROJECT REQUIREMENTS ##
-            self.selectedState = "New York"
-            self.stateFileName = "new-york.csv"
+            self.selectedState = "New York" # <-------------------------------------------------------- CHANGE THIS
+            self.stateFileName = "new-york.csv" # <---------------------------------------------------- CHANGE THIS
             ## ------------------------------------- ##
         else:
             # Ask for the state and grab the data
@@ -126,8 +126,8 @@ class Program:
         if(run_as_project):
             ## ------------------------------------- ##
             ## HARDCODED AS PER PROJECT REQUIREMENTS ##
-            num = 3
-            cities = ["wappingers falls village", "port chester village", "old westbury village"]
+            num = 3 # <-------------------------------------------------------------------------------- CHANGE THIS
+            cities = ["wappingers falls village", "port chester village", "old westbury village"] # <-- CHANGE THIS
             ## ------------------------------------- ##
         else:
             # Ask the user for the cities
