@@ -71,7 +71,7 @@ class Program:
                 continue
             city = d[0]
             dl = d[1]
-            cities.append(city)
+            cities.append(city.title())
             p = plt.plot(t1, np.array(dl), marker=randomShape())
             if(min(dl) < minY):
                 minY = min(dl)
@@ -105,23 +105,41 @@ class Program:
     The main entrypoint to the program
     """
     def main(self):
-        # Ask for the state and grab the data
-        while not self.selectedState:
-            self.selectedState = self.askState()
+
+        run_as_project = True
+
+        if(run_as_project):
+            ## ------------------------------------- ##
+            ## HARDCODED AS PER PROJECT REQUIREMENTS ##
+            self.selectedState = "New York"
+            self.stateFileName = "new-york.csv"
+            ## ------------------------------------- ##
+        else:
+            # Ask for the state and grab the data
+            while not self.selectedState:
+                self.selectedState = self.askState()
 
         # Load the data for the state
         data = popdata.loadPopDataFromCSV(os.path.join("downloads", self.stateFileName))
         self.state = data.name
 
-        # Ask the user for the cities
-        num = None
-        while not num:
-            try:
-                num = int(input("How many cities would you like to view? "))
-            except ValueError:
-                print("Invalid number of cities.")
+        if(run_as_project):
+            ## ------------------------------------- ##
+            ## HARDCODED AS PER PROJECT REQUIREMENTS ##
+            num = 3
+            cities = ["wappingers falls village", "port chester village", "old westbury village"]
+            ## ------------------------------------- ##
+        else:
+            # Ask the user for the cities
+            num = None
+            while not num:
+                try:
+                    num = int(input("How many cities would you like to view? "))
+                except ValueError:
+                    print("Invalid number of cities.")
 
-        cities = self.askCities(num, data)
+            cities = self.askCities(num, data)
+
         cd = []
         for c in cities:
             dataList = data.cityDataAsList(c)
