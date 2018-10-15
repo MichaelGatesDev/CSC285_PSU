@@ -64,8 +64,8 @@ class Program:
     def showPlot(self, data):
         t1 = list(np.arange(2010, 2018)) # 2010-2017
         cities = []
-        minY = 0
-        maxY = 1
+        minY = None
+        maxY = None
         for d in data:
             if(len(d) < 2):
                 continue
@@ -73,28 +73,27 @@ class Program:
             dl = d[1]
             cities.append(city.title())
             p = plt.plot(t1, np.array(dl), marker=randomShape())
-            if(min(dl) < minY):
+            if(not minY or min(dl) < minY):
                 minY = min(dl)
-            if(max(dl) > maxY):
+            if(not maxY or max(dl) > maxY):
                 maxY = max(dl)
-        stepRate = (maxY - minY) / len(data)
-        if(stepRate < 100):
-            # stepRate = int(round(stepRate/10.0) * 10.0)
-            stepRate = 10
-        elif(stepRate < 1000):
-            # stepRate = int(round(stepRate/100.0) * 100.0)
-            stepRate = 100
-        elif(stepRate < 10000):
-            # stepRate = int(round(stepRate/100.0) * 100.0)
-            stepRate = 1000
-        elif(stepRate < 100000):
-            # stepRate = int(round(stepRate/1000.0) * 1000.0)
-            stepRate = 10000
-        elif(stepRate < 1000000):
-            # stepRate = int(round(stepRate/10000.0) * 10000.0)
-            stepRate = 100000
-        # print(f"Step rate: {stepRate}")
-        plt.yticks(np.arange(minY, maxY, step=5000))
+
+        print(f"min is {str(minY)}")
+        print(f"max is {str(maxY)}")
+        n = (maxY - minY) / len(data)
+        if(n < 100):
+            n = 10
+        elif(n < 1000):
+            n = 100
+        elif(n < 10000):
+            n = 1000
+        elif(n < 100000):
+            n = 10000
+        elif(n < 1000000):
+            n = 100000
+        print(f"Step rate: {n}")
+
+        plt.yticks(np.arange(0, maxY+n, step=n)) # magic numbers
         plt.xlabel("Years")
         plt.ylabel("Population")
         plt.title(f"Populations within {self.state}")
