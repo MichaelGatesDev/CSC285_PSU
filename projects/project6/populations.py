@@ -106,7 +106,7 @@ class Program:
     """
     def main(self):
 
-        run_as_project = True
+        run_as_project = True # <---------------------------------------------------------------------- CHANGE THIS
 
         if(run_as_project):
             ## ------------------------------------- ##
