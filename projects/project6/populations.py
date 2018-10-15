@@ -93,7 +93,7 @@ class Program:
         elif(stepRate < 1000000):
             # stepRate = int(round(stepRate/10000.0) * 10000.0)
             stepRate = 100000
-        print(f"Step rate: {stepRate}")
+        # print(f"Step rate: {stepRate}")
         plt.yticks(np.arange(minY, maxY, step=5000))
         plt.xlabel("Years")
         plt.ylabel("Population")
@@ -144,8 +144,8 @@ class Program:
         for c in cities:
             dataList = data.cityDataAsList(c)
             cd.append((c, dataList))
-            print(f"City: {c}")
-            print(f"Pops: {str(dataList)}")
+            # print(f"City: {c}")
+            # print(f"Pops: {str(dataList)}")
         self.showPlot(cd)
 
 def main():
