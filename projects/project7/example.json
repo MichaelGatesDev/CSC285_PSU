@@ -1,0 +1,83 @@
+{
+    "info": {
+        "statuscode": 0,
+        "copyright": {
+            "text": "© 2018 MapQuest, Inc.",
+            "imageUrl": "http://api.mqcdn.com/res/mqlogo.gif",
+            "imageAltText": "© 2018 MapQuest, Inc."
+        },
+        "messages": []
+    },
+    "options": {
+        "maxResults": -1,
+        "thumbMaps": false,
+        "ignoreLatLngInput": false
+    },
+    "results": [
+        {
+            "providedLocation": {
+                "location": "wappingers falls village, NY"
+            },
+            "locations": [
+                {
+                    "street": "",
+                    "adminArea6": "",
+                    "adminArea6Type": "Neighborhood",
+                    "adminArea5": "Wappingers Falls",
+                    "adminArea5Type": "City",
+                    "adminArea4": "New York County",
+                    "adminArea4Type": "County",
+                    "adminArea3": "NY",
+                    "adminArea3Type": "State",
+                    "adminArea1": "US",
+                    "adminArea1Type": "Country",
+                    "postalCode": "",
+                    "geocodeQualityCode": "A5XAX",
+                    "geocodeQuality": "CITY",
+                    "dragPoint": false,
+                    "sideOfStreet": "N",
+                    "linkId": "282037365",
+                    "unknownInput": "",
+                    "type": "s",
+                    "latLng": {
+                        "lat": 41.597213,
+                        "lng": -73.916144
+                    },
+                    "displayLatLng": {
+                        "lat": 41.597213,
+                        "lng": -73.916144
+                    }
+                },
+                {
+                    "street": "",
+                    "adminArea6": "",
+                    "adminArea6Type": "Neighborhood",
+                    "adminArea5": "Wappinger",
+                    "adminArea5Type": "City",
+                    "adminArea4": "Dutchess County",
+                    "adminArea4Type": "County",
+                    "adminArea3": "NY",
+                    "adminArea3Type": "State",
+                    "adminArea1": "US",
+                    "adminArea1Type": "Country",
+                    "postalCode": "",
+                    "geocodeQualityCode": "A5XAX",
+                    "geocodeQuality": "CITY",
+                    "dragPoint": false,
+                    "sideOfStreet": "N",
+                    "linkId": "283595978",
+                    "unknownInput": "",
+                    "type": "s",
+                    "latLng": {
+                        "lat": 41.597213,
+                        "lng": -73.916144
+                    },
+                    "displayLatLng": {
+                        "lat": 41.597213,
+                        "lng": -73.916144
+                    }
+                }
+            ]
+        }
+    ]
+}
