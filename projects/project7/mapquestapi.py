@@ -11,13 +11,13 @@ class MapQuestAPI:
 
     def __init__(self, key):
         self.key = key
-        self.base_url = "https://www.mapquestapi.com/geocoding/v1/address?key=" + self.key +  "&inFormat=kvp&outFormat=json"
+        self.base_url = "http://www.mapquestapi.com/geocoding/v1/address?key=" + self.key +  "&inFormat=kvp&outFormat=json"
 
     def getLatLong(self, city, state):
-        city = city.replace(" ", "%20")
-        state = state.replace(" ", "%20")
+        city = city.strip().replace(" ", "%20")
+        state = state.strip().replace(" ", "%20")
         url = self.base_url + "&location=" + city + "%2C+" + state + "&thumbMaps=false"
-        # print(f"Opening page: {url}")
+        print(f"Opening page: {url}")
         content = requests.get(url)
         data = json.loads(content.text)
 
@@ -32,5 +32,5 @@ class MapQuestAPI:
         locCity = loc["adminArea5"]
         lat = loc["latLng"]["lat"]
         long = loc["latLng"]["lng"]
-        # print(f"State: {locState}, City: {locCity}, Lat: {str(lat)}, Long: {str(long)}")
+        print(f"State: {locState}, City: {locCity}, Lat: {str(lat)}, Long: {str(long)}")
         return (lat, long)

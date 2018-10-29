@@ -14,17 +14,6 @@ from matplotlib.patches import Polygon
 
 import mapquestapi
 
-
-cities = ["wappingers falls village", "port chester village", "old westbury village"]
-state = "NY"
-key = "mJaEGNAdoNiCxWIE6ctXUocZSseutk5A"
-mqapi = mapquestapi.MapQuestAPI(key)
-
-for city in cities:
-    (lat, long) = mqapi.getLatLong(cities[0], state)
-
-place_data = [] # A placeholder for potential place information
-
 # Create a new map of NY state
 map = Basemap(resolution='h', projection='merc',
           lat_0=44.6995, lon_0=73.4529,
@@ -38,9 +27,6 @@ map.fillcontinents(color='coral',lake_color='aqua')
 # Read the information on states and counties from the shape files
 map.readshapefile('shapes/st99_d00', name='states', linewidth=2)
 map.readshapefile('shapes/cb_2017_us_county_20m', 'cb_2017_us_county_20m', color='blue')
-
-# map.readshapefile('/home/whit4763/Downloads/st99_d00', name='states', linewidth=2)
-# map.readshapefile('/home/whit4763/Downloads/cb_2017_us_county_20m/cb_2017_us_county_20m', 'cb_2017_us_country_20m', color='blue')
 
 # Draw coast lines
 map.drawcoastlines()
@@ -61,5 +47,31 @@ ax.add_patch(poly)
 # I recommend using another for loop here to loop through the list you created with the relevant info
 # but you could do it all in one for loop if youy want, use than "annotate" method here to draw your
 # city information
+
+
+
+cities = ["wappingers falls village", "port chester village", "old westbury village"]
+state = "NY"
+key = "mJaEGNAdoNiCxWIE6ctXUocZSseutk5A"
+mqapi = mapquestapi.MapQuestAPI(key)
+
+
+# https://basemaptutorial.readthedocs.io/en/latest/plotting_data.html
+place_data = {}
+for city in cities:
+    ll = mqapi.getLatLong(city, state)
+    lat = ll[0]
+    long = ll[1]
+    place_data[city] = (lat, long)
+
+    print(f"Plotting {city} at {lat}, {long}")
+    plt.annotate(city,
+                xy=map(long, lat),
+                xycoords='data',
+                xytext=(50, 50),
+                textcoords='offset points',
+                color='r',
+                arrowprops=dict(arrowstyle="fancy", color='g')
+                )
 
 plt.show()
